@@ -1,0 +1,25 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+hw-tracker/node_modules
+hw-tracker/.pnp
+hw-tracker/.pnp.js
+
+# testing
+hw-tracker/coverage
+
+# production
+hw-tracker/build
+
+# misc
+hw-tracker/.DS_Store
+hw-tracker/.env.local
+hw-tracker/.env.development.local
+hw-tracker/.env.test.local
+hw-tracker/.env.production.local
+
+hw-tracker/npm-debug.log*
+hw-tracker/yarn-debug.log*
+hw-tracker/yarn-error.log*
+
+backend/config/keys.js
