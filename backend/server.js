@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const minecraftServers = require("./routes/api/homework")
+// const course = require("./routes/api/course")
+const assignment = require("./routes/api/assignment")
 const app = express()
 const path = require('path')
 
@@ -25,8 +26,8 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err))
 
-// Routes
-app.use("/api/homework", homework)
+// app.use("/api/course", course)
+app.use("/api/assignment", assignment)
 
 // Set static folder
 app.use(express.static('../hw-tracker/build'))
