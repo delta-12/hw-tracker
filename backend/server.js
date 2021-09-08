@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-// const course = require("./routes/api/course")
+const course = require("./routes/api/course")
 const assignment = require("./routes/api/assignment")
 const app = express()
 const path = require('path')
@@ -26,7 +26,7 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err))
 
-// app.use("/api/course", course)
+app.use("/api/course", course)
 app.use("/api/assignment", assignment)
 
 // Set static folder
