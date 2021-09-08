@@ -1,6 +1,6 @@
 import { Component } from "react"
 
-export default class Classes extends Component {
+export default class Courses extends Component {
 
     render() {
         return (
@@ -8,10 +8,10 @@ export default class Classes extends Component {
                 <div className="sidebar-sticky mt-4">
                     <ul className="nav flex-column">
                         <h4 className="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-4 mb-2 text-secondary">
-                        <span>Classes</span>
+                        <span>Courses</span>
                         </h4>
                     </ul>
-                    <li key="addClass" id="addClass" className="nav-item justify-content-between align-items-center px-2 mt-1 mb-1" style={{ cursor: "pointer" }}>+ Add Class</li>
+                    <li key="addCourse" id="addCourse" className="nav-item justify-content-between align-items-center px-2 mt-1 mb-1" style={{ cursor: "pointer" }}>+ Add Course</li>
                 </div>
             </nav>
         )
