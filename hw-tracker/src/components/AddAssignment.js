@@ -114,7 +114,7 @@ export default class AddAssignment extends Component {
                 <th scope="row">Due Date</th>
                 <td></td>
                 <td>
-                  <div><input type="date" className={classnames((errors.dueDate !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.dueDate })} onChange={this.onDayChange} error={errors.dueDate} id="dueDate" /><small className="form-text text-danger">{errors.dueDate}</small></div>
+                  <div><input type="datetime-local" className={classnames((errors.dueDate !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.dueDate })} onChange={this.onDayChange} error={errors.dueDate} id="dueDate" /><small className="form-text text-danger">{errors.dueDate}</small></div>
                 </td>
               </tr>
               <tr>

@@ -78,7 +78,7 @@ export default class CourseCards extends Component {
     const {errors} = this.state
     return (
       <div>
-        <LoadingIndicator text="Adding assignment..."/>
+        <LoadingIndicator text="Deleting course..."/>
         {
           (data !== undefined) ?
             (data.success !== undefined) ?
@@ -108,7 +108,7 @@ export default class CourseCards extends Component {
             (this.state.assignments.length !== 0) ?
               <table className="table table-hover">
                 <tbody>
-                  {this.state.assignments.map((a) => <TableRow key={a._id} title={a.name} date={(a.dueDate !== null ) ? a.dueDate : ""} description={a.description} />)}
+                  {this.state.assignments.map((a) => <TableRow key={a._id} id={a._id} title={a.name} date={(a.dueDate !== null ) ? a.dueDate : ""} description={a.description} />)}
                 </tbody>
               </table> : <p>No assignments</p> : <p>No assignments</p>
         }

@@ -1,8 +1,8 @@
 # To Do
 
 1. Grey out past assignments
-2. Delete assingments
-3. Add start and end time for courses
+2. Format TableRows
+3. Format start and end time for courses, timezone differences
 4. Add assignment for CourseCard
 5. assignment tags, e.g. homework, exam, project, etc.
 6. different sort metrics, e.g. due date, date created, tag
