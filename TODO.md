@@ -7,4 +7,5 @@
 5. assignment tags, e.g. homework, exam, project, etc.
 6. different sort metrics, e.g. due date, date created, tag
 7. upcoming assignment overview
-8. better validation, e.g. verify date is a date
+8. update readme
+9. better validation, e.g. verify date is a date
