@@ -8,6 +8,10 @@ const AssignmentSchema = new Schema({
     required: true,
     unique: true
   },
+  courseID: {
+    type: String,
+    required: true
+  },
   dueDate: {
       type: Date
   },

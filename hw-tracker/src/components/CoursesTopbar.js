@@ -19,7 +19,7 @@ export default class CoursesTopbar extends Component {
     const show = (this.state.menu) ? "show" : ""
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light mt-1" style={{ width: "100vw" }}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light mt-1" style={{ width: "100vw", paddingRight: "7%" }}>
         <h4 className="sidebar-heading d-flex justify-content-between align-items-center px-2 mt-4 mb-2 text-dark">
           <span className="border-bottom border-dark">Courses</span>
         </h4>

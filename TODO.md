@@ -1,10 +1,10 @@
 # To Do
 
-1. Build out skeleton of front end design
-2. Build out backend/api
-    1. new database
-    2. one collection for classes, one for assignment
-    3. assignment tags, e.g. homework, exam, project, etc.
-    4. different sort metrics, e.g. due date, date created, tag
-    5. upcoming assignment overview
-3. Finish front end + details 
+1. Grey out past assignments
+2. Delete assingments
+3. Add start and end time for courses
+4. Add assignment for CourseCard
+5. assignment tags, e.g. homework, exam, project, etc.
+6. different sort metrics, e.g. due date, date created, tag
+7. upcoming assignment overview
+8. better validation, e.g. verify date is a date

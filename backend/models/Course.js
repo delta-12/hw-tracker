@@ -7,6 +7,21 @@ const CourseSchema = new Schema({
     type: String,
     required: true,
     unique: true
+  },
+  startTime: {
+    type: Number
+  },
+  endTime: {
+    type: Number
+  },
+  days: {
+    type: Array
+  },
+  instructor: {
+    type: String
+  },
+  location: {
+    type: String
   }
 })
 
