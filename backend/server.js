@@ -30,9 +30,9 @@ app.use("/api/course", course)
 app.use("/api/assignment", assignment)
 
 // Set static folder
-app.use(express.static('../hw-tracker/build'))
+app.use(express.static('../build'))
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../hw-tracker/build/index.html'))
+  res.sendFile(path.resolve(__dirname, '../build/index.html'))
 })
 
 const port = process.env.PORT || 5000
