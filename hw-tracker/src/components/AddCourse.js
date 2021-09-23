@@ -143,20 +143,20 @@ export default class AddCourse extends Component {
                   { days }
                 </td>
               </tr>
-              {/* <tr>
+              <tr>
                 <th scope="row">Start Time</th>
                 <td></td>
                 <td>
-                  <div><input type="text" className={classnames((errors.startTime !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.startTime })} onChange={this.onChange} value={this.state.startTime} error={errors.startTime} placeholder="00:00" id="startTime"></input><small className="form-text text-danger">{errors.startTime}</small></div>
+                  <div><input type="time" className={classnames((errors.startTime !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.startTime })} onChange={this.onChange} value={this.state.startTime} error={errors.startTime} placeholder="00:00" id="startTime"></input><small className="form-text text-danger">{errors.startTime}</small></div>
                 </td>
               </tr>
               <tr>
                 <th scope="row">End Time</th>
                 <td></td>
                 <td>
-                  <div><input type="text" className={classnames((errors.endTime !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.endTime })} onChange={this.onChange} value={this.state.endTime} error={errors.endTime} placeholder="00:00" id="endTime"></input><small className="form-text text-danger">{errors.endTime}</small></div>
+                  <div><input type="time" className={classnames((errors.endTime !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.endTime })} onChange={this.onChange} value={this.state.endTime} error={errors.endTime} placeholder="00:00" id="endTime"></input><small className="form-text text-danger">{errors.endTime}</small></div>
                 </td>
-              </tr> */}
+              </tr>
             </tbody>
           </table>
           <button className="btn btn-primary" type="submit">Add Course</button>

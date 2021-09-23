@@ -93,8 +93,8 @@ export default class CourseCards extends Component {
         </div>
         <div className="row border-bottom">
           <div className="col-xl-3">
-            {/* <p><strong>Time: </strong>{ (this.props.startTime != null && this.props.startTime !== "") ? this.props.startTime + " - " + this.props.endTime : null }</p> */}
             <p><strong>Days: </strong>{this.props.days}</p>
+            <p><strong>Time: </strong>{ (this.props.startTime != null && this.props.startTime !== "") ? this.props.startTime + " - " + this.props.endTime : null }</p>
             <p><strong>Instructor: </strong>{this.props.instructor}</p>
             <p><strong>Location: </strong>{this.props.location}</p>
           </div>

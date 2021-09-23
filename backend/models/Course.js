@@ -9,10 +9,10 @@ const CourseSchema = new Schema({
     unique: true
   },
   startTime: {
-    type: Number
+    type: String
   },
   endTime: {
-    type: Number
+    type: String
   },
   days: {
     type: Array
