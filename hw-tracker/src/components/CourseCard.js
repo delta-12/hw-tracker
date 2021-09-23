@@ -43,11 +43,6 @@ export default class CourseCards extends Component {
     this.intervalID = setTimeout(this.getAssignments.bind(this), 5000)
   }
 
-  onClick = e => {
-    e.preventDefault()
-    alert('click')
-  }
-
   deleteCourse = e => {
     e.preventDefault()
     const reqData = {

@@ -38,6 +38,15 @@ router.post("/info", (req, res) => {
     })
 })
 
+router.post("/infoAll", (req, res) => {
+    Assignment.find().sort('dueDate').then(assignmentList => {
+        if(assignmentList) {
+            return res.status(200).json({ success: true, assignments: assignmentList})
+        }
+        return res.status(400).json({ success: false, error: "Failed to find assignments" })
+    })
+})
+
 router.post("/deleteAssignment", (req, res) => {
     Assignment
         .deleteOne({ _id: req.body.assignmentID })
