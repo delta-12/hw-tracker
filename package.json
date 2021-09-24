@@ -10,6 +10,7 @@
     "bootstrap": "^5.1.0",
     "bootswatch": "^5.1.0",
     "classnames": "^2.3.1",
+    "concurrently": "^6.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-loader-spinner": "^4.0.0",
@@ -19,10 +20,12 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start-client": "react-scripts start",
+    "build": "react-scripts build && (cd backend && npm install)",
+    "start": "cd backend && npm start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"npm run server --prefix backend\" \"npm run start-client\""
   },
   "proxy": "http://localhost:5000",
   "eslintConfig": {
