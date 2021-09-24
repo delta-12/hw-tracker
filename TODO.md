@@ -2,6 +2,7 @@
 
 1. Mark completed, danger if incomplete past due date
 2. Format TableRows
+    1. Fix alignment vertically and horizontally
 3. Format start and end time for courses, timezone differences
 4. Add assignment for CourseCard
 5. assignment tags, e.g. homework, exam, project, etc.
