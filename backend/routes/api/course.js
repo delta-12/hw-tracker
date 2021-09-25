@@ -1,6 +1,5 @@
 const express = require("express")
 const router = express.Router()
-const querystring = require("querystring")
 
 const Course = require("../../models/Course")
 const Assignment = require("../../models/Assignment")

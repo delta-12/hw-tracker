@@ -20,6 +20,9 @@ const AssignmentSchema = new Schema({
   },
   description: {
       type: String
+  },
+  completed: {
+    type: Boolean
   }
 })
 
