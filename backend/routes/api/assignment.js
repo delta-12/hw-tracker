@@ -59,9 +59,9 @@ router.post("/deleteAssignment", (req, res) => {
         })
 })
 
-router.post("updateAssignment", (req, res) => {
+router.post("/updateAssignment", (req, res) => {
     Assignment
-        .findOneAndUpdate({ _id: req.body.assignmentID }, req.body.update, {new: true})
+        .updateOne({ _id: req.body.assignmentID }, req.body.update, {new: true})
         .then(assignment => {
             if (assignment) {
                 return res.status(200).json({ success: true, updatedAssignment: assignment })
