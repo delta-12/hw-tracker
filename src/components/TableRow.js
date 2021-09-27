@@ -12,9 +12,17 @@ export default class TableRow extends React.Component {
       dueDate: null,
       type: "",
       description: "",
+      edit: false,
       data: {},
       errors: {}
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      name: this.props.title,
+      description: this.props.description
+    })
   }
 
   deleteAssignment = e => {
