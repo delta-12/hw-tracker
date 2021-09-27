@@ -102,6 +102,17 @@ export default class CourseCards extends Component {
           (this.state.assignments !== null) ?
             (this.state.assignments.length !== 0) ?
               <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Description</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
                 <tbody>
                   {this.state.assignments.map((a) => <TableRow key={a._id} id={a._id} title={a.name} date={(a.dueDate !== null ) ? a.dueDate : ""} description={a.description} completed={a.completed} />)}
                 </tbody>
