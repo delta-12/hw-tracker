@@ -32,6 +32,11 @@ export default class AddAssignment extends Component {
           this.setState({
             courseID: res.data.courses[0]._id
           })
+          if (this.props.course !== 0) {
+            this.setState({
+              courseID: this.props.course
+            })
+          }
         }
       })
       .catch(err => 

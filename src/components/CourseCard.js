@@ -96,7 +96,7 @@ export default class CourseCards extends Component {
         </div>
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
           <h4><strong>Assignments</strong></h4>
-          {/* <button className="btn btn-primary" onClick={this.onClick}>+ Add Assignment</button> */}
+          <button className="btn btn-primary" id="AddAssignment" value={this.props.courseID} onClick={this.props.addAssignment}>+ Add Assignment</button>
         </div>
         {
           (this.state.assignments !== null) ?

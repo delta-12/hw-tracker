@@ -14,6 +14,7 @@ class App extends Component {
     super()
     this.state = {
       courses: null,
+      course: null,
       error: null,
       key: "dashboard",
       windowWidth: window.innerWidth
@@ -57,7 +58,8 @@ class App extends Component {
   onCourseClick = e => {
     e.preventDefault()
     this.setState({
-      key: e.target.id
+      key: e.target.id,
+      course: e.target.value
     })
   }
 
@@ -73,10 +75,10 @@ class App extends Component {
       const addAssignment = <li key="addAssingment" id="AddAssignment" onClick={this.onCourseClick} className="nav-item justify-content-between align-items-center px-2 mt-1 mb-1" style={{ cursor: "pointer" }}>+ Add Assignment</li>
       courses.push(<li key="br"><br></br></li>, dashboardReturn, addCourse, addAssignment)
       
-      const courseInfo = this.state.courses.map((c) => <CourseCard key={c._id} courseID={c._id} name={c.name} startTime={c.startTime} endTime={c.endTime} days={c.days} instructor={c.instructor} location={c.location} />)
+      const courseInfo = this.state.courses.map((c) => <CourseCard key={c._id} courseID={c._id} name={c.name} startTime={c.startTime} endTime={c.endTime} days={c.days} instructor={c.instructor} location={c.location} addAssignment={this.onCourseClick} />)
       const dashboard = <Dashboard key="dashboard" />
       const addCourseCard = <AddCourse key="AddCourse" />
-      const addAssignmentCard = <AddAssignment key="AddAssignment" />
+      const addAssignmentCard = <AddAssignment key="AddAssignment" course={this.state.course} />
       courseInfo.push(dashboard, addCourseCard, addAssignmentCard)
 
       return (
