@@ -52,18 +52,17 @@ export default class AddCourse extends Component {
   onSubmit = e => {
     e.preventDefault()
     let days = [...this.state.days]
-    let parsedDays = ""
+    let checkedDays = []
     for (let day in days) {
       if (days[day].checked) {
-        parsedDays += days[day].name + ","
+        checkedDays.push(days[day])
       }
     }
-    parsedDays = parsedDays.substring(0, parsedDays.length -1)
     const newCourse = {
       name: this.state.name,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
-      days: parsedDays,
+      days: checkedDays,
       instructor: this.state.instructor,
       location: this.state.location
     }
