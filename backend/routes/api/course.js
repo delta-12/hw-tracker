@@ -64,11 +64,9 @@ router.post("/updateCourse", (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors)
       }
-    Course.findOne({ name: req.body.update.name }).then(course => {
+    Course.findOne({ $and: [{name: req.body.update.name}, {_id: {$ne: req.body.courseID}}] }).then(course => {
         if (course) {
-            if (course._id !== req.body.courseID) {
-                return res.status(400).json({ success: false, name: "'" + req.body.update.name + "' already exists."})   
-            }
+            return res.status(400).json({ success: false, name: "'" + req.body.update.name + "' already exists."})   
         }
     })
     Course
