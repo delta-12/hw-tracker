@@ -59,4 +59,27 @@ router.get("/info", (req, res) => {
     })
 })
 
+router.post("/updateCourse", (req, res) => {
+    const { errors, isValid } = validateCourseInput(req.body.update)
+    if (!isValid) {
+        return res.status(400).json(errors)
+      }
+    Course.findOne({ name: req.body.update.name }).then(course => {
+        if(course) {
+            return res.status(400).json({ success: false, name: "'" + req.body.update.name + "' already exists."})
+        }
+    })
+    Course
+        .updateOne({ _id: req.body.courseID }, req.body.update, {new: true})
+        .then(course => {
+            if (course) {
+                return res.status(200).json({ success: true, updatedCourse: course })
+            }
+        })
+        .catch(err => {
+            console.log(err)
+            return res.status(400).json({ success: false, error: err })
+        })
+})
+
 module.exports = router
