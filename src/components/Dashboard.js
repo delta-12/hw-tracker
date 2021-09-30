@@ -25,8 +25,14 @@ export default class Dashboard extends Component {
     axios
       .post("/api/assignment/infoAll")
       .then(res => {
+        let assignments = res.data.assignments
+        for (let a in assignments) {
+          if (assignments[a].completed && new Date(assignments[a].dueDate).getTime() < Math.floor(new Date().getTime())) {
+            assignments.splice(a, 1)
+          }
+        }
         this.setState({
-          assignments: res.data.assignments
+          assignments: assignments
         })
       })
       .catch(err =>
