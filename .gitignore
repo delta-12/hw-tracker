@@ -20,5 +20,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+src/styles/custom.scss
+
 backend/config/keys.js
 backend/node_modules
