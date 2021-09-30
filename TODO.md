@@ -11,4 +11,5 @@
 8. format assignment date selector
 9. better validation, e.g. verify date is a date
 10. Format start and end time for courses, timezone differences
-11. update readme
+11. write tests
+12. update readme
