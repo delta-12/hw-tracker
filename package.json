@@ -23,7 +23,7 @@
     "start-client": "react-scripts start",
     "build": "react-scripts build && (cd backend && npm install)",
     "start": "cd backend && npm start",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject",
     "dev": "concurrently \"npm run server --prefix backend\" \"npm run start-client\""
   },
