@@ -26,10 +26,14 @@ export default class Dashboard extends Component {
       .post("/api/assignment/infoAll")
       .then(res => {
         let assignments = res.data.assignments
+        let removeIndexes = []
         for (let a in assignments) {
           if (assignments[a].completed && new Date(assignments[a].dueDate).getTime() < Math.floor(new Date().getTime())) {
-            assignments.splice(a, 1)
+            removeIndexes.push(a)
           }
+        }
+        for (let i = removeIndexes.length - 1; i >= 0; i--) {
+          assignments.splice(removeIndexes[i], 1)
         }
         this.setState({
           assignments: assignments
