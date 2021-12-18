@@ -50,15 +50,6 @@ router.post("/deleteCourse", (req, res) => {
         })
 })
 
-router.get("/info", (req, res) => {
-    Course.find().then(courseList => {
-        if(courseList) {
-            return res.status(200).json({ success: true, courses: courseList })
-        }
-        return res.status(400).json({ success: false, error: "Failed to find courses" })
-    })
-})
-
 router.post("/updateCourse", (req, res) => {
     const { errors, isValid } = validateCourseInput(req.body.update)
     if (!isValid) {
@@ -80,6 +71,24 @@ router.post("/updateCourse", (req, res) => {
             console.log(err)
             return res.status(400).json({ success: false, error: err })
         })
+})
+
+router.get("/info", (req, res) => {
+    Course.find({ archived: false }).then(courseList => {
+        if(courseList) {
+            return res.status(200).json({ success: true, courses: courseList })
+        }
+        return res.status(400).json({ success: false, error: "Failed to find courses" })
+    })
+})
+
+router.get("/archive", (req, res) => {
+    Course.find({ archived: true }).then(courseList => {
+        if(courseList) {
+            return res.status(200).json({ success: true, courses: courseList })
+        }
+        return res.status(400).json({ success: false, error: "Failed to find archived courses" })
+    })
 })
 
 module.exports = router

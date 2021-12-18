@@ -29,24 +29,6 @@ router.post("/createAssignment", (req, res) => {
     })
 })
 
-router.post("/info", (req, res) => {
-    Assignment.find({ courseID: req.body.courseID }).sort('dueDate').then(assignmentList => {
-        if (assignmentList) {
-            return res.status(200).json({ success: true, assignments: assignmentList })
-        }
-        return res.status(400).json({ success: false, error: "Failed to find assignments" })
-    })
-})
-
-router.post("/infoAll", (req, res) => {
-    Assignment.find().sort('dueDate').then(assignmentList => {
-        if (assignmentList) {
-            return res.status(200).json({ success: true, assignments: assignmentList })
-        }
-        return res.status(400).json({ success: false, error: "Failed to find assignments" })
-    })
-})
-
 router.post("/deleteAssignment", (req, res) => {
     Assignment
         .deleteOne({ _id: req.body.assignmentID })
@@ -71,6 +53,38 @@ router.post("/updateAssignment", (req, res) => {
             console.log(err)
             return res.status(400).json({ success: false, error: err })
         })
+})
+
+router.post("/updateAssignments", (req, res) => {
+    Assignment
+        .updateMany({ courseID: req.body.courseID }, req.body.update, {new: true})
+        .then(assignmentList => {
+            if (assignmentList) {
+                return res.status(200).json({ success: true, updatedAssignment: assignmentList })
+            }
+        })
+        .catch(err => {
+            console.log(err)
+            return res.status(400).json({ success: false, error: err })
+        })
+})
+
+router.post("/info", (req, res) => {
+    Assignment.find({ courseID: req.body.courseID }).sort('dueDate').then(assignmentList => {
+        if (assignmentList) {
+            return res.status(200).json({ success: true, assignments: assignmentList })
+        }
+        return res.status(400).json({ success: false, error: "Failed to find assignments" })
+    })
+})
+
+router.get("/infoAll", (req, res) => {
+    Assignment.find().sort('dueDate').then(assignmentList => {
+        if (assignmentList) {
+            return res.status(200).json({ success: true, assignments: assignmentList })
+        }
+        return res.status(400).json({ success: false, error: "Failed to find assignments" })
+    })
 })
 
 module.exports = router

@@ -22,7 +22,13 @@ const CourseSchema = new Schema({
   },
   location: {
     type: String
-  }
+  },
+  archived: {
+    type: Boolean
+  },
+  dateArchived: {
+    type: Date
+},
 })
 
 module.exports = Course = mongoose.model("courses", CourseSchema)

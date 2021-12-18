@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard.js"
 import CourseCard from "./components/CourseCard"
 import AddCourse from "./components/AddCourse"
 import AddAssignment from "./components/AddAssignment"
+import ArchivedCourses from "./components/ArchivedCourses"
 
 class App extends Component {
 
@@ -71,15 +72,17 @@ class App extends Component {
 
       const courses = this.state.courses.map((c) => <li key={c._id} id={c._id} onClick={this.onCourseClick} className="nav-item justify-content-between align-items-center px-2 mt-1 mb-1" style={{ cursor: "pointer" }}>{c.name}</li>)
       const dashboardReturn = <li key="dashboardReturn" id="dashboard" onClick={this.onCourseClick} className="nav-item justify-content-between align-items-center px-2 mt-1 mb-1" style={{ cursor: "pointer" }}>Dashboard</li>
+      const archivedCourses = <li key="archivedCourses" id="ArchivedCourses" onClick={this.onCourseClick} className="nav-item justify-content-between align-items-center px-2 mt-1 mb-1" style={{ cursor: "pointer" }}>Archived Courses</li>
       const addCourse = <li key="addCourse" id="AddCourse" onClick={this.onCourseClick} className="nav-item justify-content-between align-items-center px-2 mt-1 mb-1" style={{ cursor: "pointer" }}>+ Add Course</li>
       const addAssignment = <li key="addAssingment" id="AddAssignment" onClick={this.onCourseClick} className="nav-item justify-content-between align-items-center px-2 mt-1 mb-1" style={{ cursor: "pointer" }}>+ Add Assignment</li>
-      courses.push(<li key="br"><br></br></li>, dashboardReturn, addCourse, addAssignment)
+      courses.push(<li key="br"><br></br></li>, dashboardReturn, archivedCourses, addCourse, addAssignment)
       
-      const courseInfo = this.state.courses.map((c) => <CourseCard key={c._id} courseID={c._id} name={c.name} startTime={c.startTime} endTime={c.endTime} days={c.days} instructor={c.instructor} location={c.location} addAssignment={this.onCourseClick} />)
+      const courseInfo = this.state.courses.map((c) => <CourseCard key={c._id} courseID={c._id} name={c.name} startTime={c.startTime} endTime={c.endTime} days={c.days} instructor={c.instructor} location={c.location} archived={c.archived} addAssignment={this.onCourseClick} />)
       const dashboard = <Dashboard key="dashboard" />
       const addCourseCard = <AddCourse key="AddCourse" />
       const addAssignmentCard = <AddAssignment key="AddAssignment" course={this.state.course} />
-      courseInfo.push(dashboard, addCourseCard, addAssignmentCard)
+      const archivedCoursesCard = <ArchivedCourses key="ArchivedCourses" />
+      courseInfo.push(dashboard, archivedCoursesCard, addCourseCard, addAssignmentCard)
 
       return (
         <div className="App">

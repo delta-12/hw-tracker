@@ -158,6 +158,31 @@ export default class CourseCards extends Component {
     )
   }
 
+  archiveCourse = e => {
+    e.preventDefault()
+    let update = {}
+    update["archived"] = (this.props.archived) ? false : true
+    const reqData = {
+      courseID: this.props.courseID,
+      update: update
+    }
+    axios
+      .post("/api/assignment/updateAssignments", reqData)
+      .then(res => {
+        this.setState({
+          data: res.data
+        })
+      })
+      .catch(err => {
+        this.setState({
+          errors: err.response.data
+        })
+      })
+    update["name"] = this.props.name
+    update["dateArchived"] = (this.props.archived) ? null : Math.floor(new Date().getTime())
+    this.updateCourse(update)
+  }
+
   deleteCourse = e => {
     e.preventDefault()
     const reqData = {
@@ -228,9 +253,10 @@ export default class CourseCards extends Component {
             </div>
             :
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h3>{this.props.name}</h3>
+              <h3>{(this.props.archived) ? this.props.name+" (Archived)" : this.props.name}</h3>
               <div>
                 <button className="btn btn-outline-secondary" style={{ marginRight: "10px" }} onClick={this.toggleEdit}>Edit</button>
+                <button className="btn btn-outline-secondary" style={{ marginRight: "10px" }} onClick={this.archiveCourse}>{(this.props.archived) ? "Unarchive" : "Archive"}</button>
                 <button className="btn btn-secondary" onClick={this.deleteCourse}>Delete Course</button>
               </div>
             </div>

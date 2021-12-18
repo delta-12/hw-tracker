@@ -23,12 +23,12 @@ export default class Dashboard extends Component {
 
   getAssignments() {
     axios
-      .post("/api/assignment/infoAll")
+      .get("/api/assignment/infoAll")
       .then(res => {
         let assignments = res.data.assignments
         let removeIndexes = []
         for (let a in assignments) {
-          if (assignments[a].completed && new Date(assignments[a].dueDate).getTime() < Math.floor(new Date().getTime())) {
+          if ((assignments[a].completed && new Date(assignments[a].dueDate).getTime() < Math.floor(new Date().getTime())) || assignments[a].archived) {
             removeIndexes.push(a)
           }
         }

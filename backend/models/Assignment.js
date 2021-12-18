@@ -23,6 +23,9 @@ const AssignmentSchema = new Schema({
   },
   completed: {
     type: Boolean
+  },
+  archived: {
+    type: Boolean
   }
 })
 
