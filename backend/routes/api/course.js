@@ -22,7 +22,8 @@ router.post("/addCourse", (req, res) => {
         endTime: req.body.endTime,
         days: req.body.days,
         instructor: req.body.instructor,
-        location: req.body.location
+        location: req.body.location,
+        archived: false
     })
     newCourse
         .save()
