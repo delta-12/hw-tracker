@@ -6,7 +6,6 @@ const CourseSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true
   },
   startTime: {
     type: String
@@ -28,7 +27,12 @@ const CourseSchema = new Schema({
   },
   dateArchived: {
     type: Date
-},
+  },
+  userID: {
+    type: String,
+    required: true,
+    unique: true
+  }
 })
 
 module.exports = Course = mongoose.model("courses", CourseSchema)

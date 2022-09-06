@@ -14,13 +14,13 @@ export default class AddCourse extends Component {
       startTime: "",
       endTime: "",
       days: [
-        {name: "M", n: 0, checked: false},
-        {name: "Tu", n: 1, checked: false},
-        {name: "W", n: 2, checked: false},
-        {name: "Th", n: 3, checked: false},
-        {name: "F", n: 4, checked: false},
-        {name: "S", n: 5, checked: false},
-        {name: "Su", n: 6, checked: false}
+        { name: "M", n: 0, checked: false },
+        { name: "Tu", n: 1, checked: false },
+        { name: "W", n: 2, checked: false },
+        { name: "Th", n: 3, checked: false },
+        { name: "F", n: 4, checked: false },
+        { name: "S", n: 5, checked: false },
+        { name: "Su", n: 6, checked: false }
       ],
       instructor: "",
       location: "",
@@ -37,7 +37,7 @@ export default class AddCourse extends Component {
 
   onCheck = e => {
     let days = [...this.state.days]
-    let day = {...days[e.target.value]}
+    let day = { ...days[e.target.value] }
     if (day.checked) {
       day.checked = false
     } else {
@@ -64,7 +64,8 @@ export default class AddCourse extends Component {
       endTime: this.state.endTime,
       days: checkedDays,
       instructor: this.state.instructor,
-      location: this.state.location
+      location: this.state.location,
+      userID: this.props.userID
     }
     this.setState({
       data: {},
@@ -78,7 +79,7 @@ export default class AddCourse extends Component {
             data: res.data
           })
         })
-        .catch(err => 
+        .catch(err =>
           this.setState({
             errors: err.response.data
           }))
@@ -87,10 +88,10 @@ export default class AddCourse extends Component {
 
   render() {
 
-    const {data} = this.state
-    const {errors} = this.state
+    const { data } = this.state
+    const { errors } = this.state
 
-    const days = this.state.days.map((d) => 
+    const days = this.state.days.map((d) =>
       <div key={d.n} className="form-check col-sm-1" style={{ paddingBottom: "1.5%", paddingRight: "2%" }}>
         <input className="form-check-input" type="checkbox" value={d.n} onChange={this.onCheck} />
         <label className="form-check-label">{d.name}</label>
@@ -102,7 +103,7 @@ export default class AddCourse extends Component {
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h3>Add Course</h3>
         </div>
-        <LoadingIndicator text="Adding course..."/>
+        <LoadingIndicator text="Adding course..." />
         {
           (data !== undefined) ?
             (data.success !== undefined) ?
@@ -138,8 +139,8 @@ export default class AddCourse extends Component {
               <tr>
                 <th scope="row">Days</th>
                 <td></td>
-                <td className="d-flex align-items-center" style={{ paddingTop: "1.5%", paddingBottom: "1.5%"}}>
-                  { days }
+                <td className="d-flex align-items-center" style={{ paddingTop: "1.5%", paddingBottom: "1.5%" }}>
+                  {days}
                 </td>
               </tr>
               <tr>

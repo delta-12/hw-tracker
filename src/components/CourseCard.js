@@ -15,13 +15,13 @@ export default class CourseCards extends Component {
       startTime: "",
       endTime: "",
       days: [
-        {name: "M", n: 0, checked: false},
-        {name: "Tu", n: 1, checked: false},
-        {name: "W", n: 2, checked: false},
-        {name: "Th", n: 3, checked: false},
-        {name: "F", n: 4, checked: false},
-        {name: "S", n: 5, checked: false},
-        {name: "Su", n: 6, checked: false}
+        { name: "M", n: 0, checked: false },
+        { name: "Tu", n: 1, checked: false },
+        { name: "W", n: 2, checked: false },
+        { name: "Th", n: 3, checked: false },
+        { name: "F", n: 4, checked: false },
+        { name: "S", n: 5, checked: false },
+        { name: "Su", n: 6, checked: false }
       ],
       instructor: "",
       location: "",
@@ -47,7 +47,7 @@ export default class CourseCards extends Component {
       days: stateDays,
       instructor: this.props.instructor,
       location: this.props.location
-    })     
+    })
   }
 
   componentWillUnmount() {
@@ -57,8 +57,9 @@ export default class CourseCards extends Component {
 
   getAssignments() {
     const reqData = {
-      courseID: this.props.courseID
-    }    
+      courseID: this.props.courseID,
+      userID: this.props.userID
+    }
     axios
       .post("/api/assignment/info", reqData)
       .then(res => {
@@ -84,7 +85,7 @@ export default class CourseCards extends Component {
   }
 
   toggleEdit = () => {
-    (this.state.edit) ? this.setState({ edit: false }) : this.setState({ edit: true }) 
+    (this.state.edit) ? this.setState({ edit: false }) : this.setState({ edit: true })
   }
 
   onChange = e => {
@@ -95,7 +96,7 @@ export default class CourseCards extends Component {
 
   onCheck = e => {
     let days = [...this.state.days]
-    let day = {...days[e.target.value]}
+    let day = { ...days[e.target.value] }
     if (day.checked) {
       day.checked = false
     } else {
@@ -133,7 +134,8 @@ export default class CourseCards extends Component {
   updateCourse = update => {
     const reqData = {
       courseID: this.props.courseID,
-      update: update
+      update: update,
+      userID: this.props.userID
     }
     this.setState({
       requestType: ["Updating", "updated"],
@@ -142,19 +144,19 @@ export default class CourseCards extends Component {
     })
     trackPromise(
       axios
-      .post("/api/course/updateCourse", reqData)
-      .then(res => {
-        this.setState({
-          data: res.data
+        .post("/api/course/updateCourse", reqData)
+        .then(res => {
+          this.setState({
+            data: res.data
+          })
         })
-      })
-      .catch(err => {
-        this.setState({
-          errors: err.response.data
+        .catch(err => {
+          this.setState({
+            errors: err.response.data
+          })
+          console.log(this.state.error)
+          this.toggleEdit()
         })
-        console.log(this.state.error)
-        this.toggleEdit()
-      })
     )
   }
 
@@ -164,7 +166,8 @@ export default class CourseCards extends Component {
     update["archived"] = (this.props.archived) ? false : true
     const reqData = {
       courseID: this.props.courseID,
-      update: update
+      update: update,
+      userID: this.props.userID
     }
     axios
       .post("/api/assignment/updateAssignments", reqData)
@@ -186,7 +189,8 @@ export default class CourseCards extends Component {
   deleteCourse = e => {
     e.preventDefault()
     const reqData = {
-      courseID: this.props.courseID
+      courseID: this.props.courseID,
+      userID: this.props.userID
     }
     this.setState({
       requestType: ["Deleting", "deleted"],
@@ -216,14 +220,14 @@ export default class CourseCards extends Component {
         parsedDays += this.state.days[day].name + ","
       }
     }
-    return parsedDays.substring(0, parsedDays.length -1)
+    return parsedDays.substring(0, parsedDays.length - 1)
   }
 
   render() {
-    const {data} = this.state
-    const {errors} = this.state
+    const { data } = this.state
+    const { errors } = this.state
     const days = this.parseDays()
-    const dayCheckBoxes = this.state.days.map((d) => 
+    const dayCheckBoxes = this.state.days.map((d) =>
       <div key={d.n} className="form-check col-sm-1" style={{ paddingBottom: "1.5%", paddingRight: "2%" }}>
         <input className="form-check-input" type="checkbox" value={d.n} checked={(d.checked) ? "checked" : ""} onChange={this.onCheck} />
         <label className="form-check-label">{d.name}</label>
@@ -231,7 +235,7 @@ export default class CourseCards extends Component {
     )
     return (
       <div>
-        <LoadingIndicator text={this.state.requestType[0] + " course..."}/>
+        <LoadingIndicator text={this.state.requestType[0] + " course..."} />
         {
           (data !== undefined) ?
             (data.success !== undefined) ?
@@ -253,7 +257,7 @@ export default class CourseCards extends Component {
             </div>
             :
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h3>{(this.props.archived) ? this.props.name+" (Archived)" : this.props.name}</h3>
+              <h3>{(this.props.archived) ? this.props.name + " (Archived)" : this.props.name}</h3>
               <div>
                 <button className="btn btn-outline-secondary" style={{ marginRight: "10px" }} onClick={this.toggleEdit}>Edit</button>
                 <button className="btn btn-outline-secondary" style={{ marginRight: "10px" }} onClick={this.archiveCourse}>{(this.props.archived) ? "Unarchive" : "Archive"}</button>
@@ -276,7 +280,7 @@ export default class CourseCards extends Component {
             <div className="row border-bottom">
               <div className="col-xl-3">
                 <p><strong>Days: </strong>{days}</p>
-                <p><strong>Time: </strong>{ (this.props.startTime != null && this.props.startTime !== "") ? this.props.startTime + " - " + this.props.endTime : null }</p>
+                <p><strong>Time: </strong>{(this.props.startTime != null && this.props.startTime !== "") ? this.props.startTime + " - " + this.props.endTime : null}</p>
                 <p><strong>Instructor: </strong>{this.props.instructor}</p>
                 <p><strong>Location: </strong>{this.props.location}</p>
               </div>
@@ -302,7 +306,7 @@ export default class CourseCards extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.assignments.map((a) => <TableRow key={a._id} id={a._id} title={a.name} date={(a.dueDate !== null ) ? a.dueDate : ""} description={a.description} completed={a.completed} />)}
+                  {this.state.assignments.map((a) => <TableRow key={a._id} id={a._id} userID={this.props.userID} title={a.name} date={(a.dueDate !== null) ? a.dueDate : ""} description={a.description} completed={a.completed} />)}
                 </tbody>
               </table> : <p>No assignments</p> : <p>No assignments</p>
         }

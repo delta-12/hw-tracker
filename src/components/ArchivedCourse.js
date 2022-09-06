@@ -3,12 +3,12 @@ import axios from "axios"
 
 export default class ArchivedCourse extends React.Component {
 
-    state = {
-      name: "",
-      dateArchived: null,
-      data: {},
-      errors: {}
-    }
+  state = {
+    name: "",
+    dateArchived: null,
+    data: {},
+    errors: {}
+  }
 
   componentDidMount() {
     this.setState({
@@ -22,12 +22,13 @@ export default class ArchivedCourse extends React.Component {
     update["name"] = this.props.title
     update["archived"] = false
     const reqData = {
-        courseID: this.props.courseID,
-        update: update
+      courseID: this.props.courseID,
+      update: update,
+      userID: this.props.userID
     }
     this.setState({
-        data: {},
-        errors: {}
+      data: {},
+      errors: {}
     })
     axios
       .post("/api/course/updateCourse", reqData)
@@ -48,7 +49,8 @@ export default class ArchivedCourse extends React.Component {
     update["archived"] = false
     const reqData = {
       courseID: this.props.courseID,
-      update: update
+      update: update,
+      userID: this.props.userID
     }
     axios
       .post("/api/assignment/updateAssignments", reqData)
@@ -76,7 +78,7 @@ export default class ArchivedCourse extends React.Component {
       <tr>
         <th scope="row">{(date === "Invalid Date") ? "" : date}</th>
         <td>{this.props.title}</td>
-        <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.unarchive}>Unarchive</button></td>
+        <td><button className="btn" style={{ border: "none", color: "#2780e3" }} onClick={this.unarchive}>Unarchive</button></td>
       </tr>
     )
   }

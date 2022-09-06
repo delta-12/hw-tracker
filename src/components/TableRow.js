@@ -28,7 +28,8 @@ export default class TableRow extends React.Component {
   deleteAssignment = e => {
     e.preventDefault()
     const reqData = {
-      assignmentID: this.props.id
+      assignmentID: this.props.id,
+      userID: this.props.userID
     }
     this.setState({
       data: {},
@@ -49,15 +50,15 @@ export default class TableRow extends React.Component {
   }
 
   toggleEdit = () => {
-    (this.state.edit) ? this.setState({ edit: false }) : this.setState({ edit: true }) 
+    (this.state.edit) ? this.setState({ edit: false }) : this.setState({ edit: true })
   }
 
   changeCompletion = e => {
     e.preventDefault()
     if (this.props.completed) {
-      this.updateAssignment({completed: false})
+      this.updateAssignment({ completed: false })
     } else {
-      this.updateAssignment({completed: true})
+      this.updateAssignment({ completed: true })
     }
   }
 
@@ -95,7 +96,8 @@ export default class TableRow extends React.Component {
   updateAssignment = update => {
     const reqData = {
       assignmentID: this.props.id,
-      update: update
+      update: update,
+      userID: this.props.userID
     }
     this.setState({
       data: {},
@@ -116,7 +118,7 @@ export default class TableRow extends React.Component {
   }
 
   render() {
-    const {errors} = this.state
+    const { errors } = this.state
     const date = new Date(this.props.date).toLocaleString().replace(":00 ", " ")
     if (this.state.edit) {
       return (
@@ -129,7 +131,7 @@ export default class TableRow extends React.Component {
           <td><input type="text" className={classnames((errors.description !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.description })} onChange={this.onChange} value={this.state.description} error={errors.description} placeholder={this.props.description} id="description"></input><small className="form-text text-danger">{errors.description}</small></td>
           <td><button className="btn btn-primary" onClick={this.editAssignment}>Save Changes</button></td>
           <td><button className="btn btn-dark" onClick={this.toggleEdit}>Discard</button></td>
-          <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.deleteAssignment}>Delete</button></td>
+          <td><button className="btn" style={{ border: "none", color: "#2780e3" }} onClick={this.deleteAssignment}>Delete</button></td>
         </tr>
       )
     }
@@ -141,9 +143,9 @@ export default class TableRow extends React.Component {
           (this.props.completed) ? <td><p className="text-success">Complete</p></td> : <td><p className="text-danger">Incomplete</p></td>
         }
         <td>{this.props.description}</td>
-        <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.changeCompletion}>{ (this.props.completed) ? "Mark Incomplete" : "Mark Complete" }</button></td>
-        <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.toggleEdit}>Edit</button></td>
-        <td><button className="btn" style={{border: "none", color: "#2780e3"}} onClick={this.deleteAssignment}>Delete</button></td>
+        <td><button className="btn" style={{ border: "none", color: "#2780e3" }} onClick={this.changeCompletion}>{(this.props.completed) ? "Mark Incomplete" : "Mark Complete"}</button></td>
+        <td><button className="btn" style={{ border: "none", color: "#2780e3" }} onClick={this.toggleEdit}>Edit</button></td>
+        <td><button className="btn" style={{ border: "none", color: "#2780e3" }} onClick={this.deleteAssignment}>Delete</button></td>
       </tr>
     )
   }

@@ -22,8 +22,9 @@ export default class Dashboard extends Component {
   }
 
   getAssignments() {
+    const reqData = { userID: this.props.userID }
     axios
-      .get("/api/assignment/infoAll")
+      .post("/api/assignment/infoAll", reqData)
       .then(res => {
         let assignments = res.data.assignments
         let removeIndexes = []
@@ -72,7 +73,7 @@ export default class Dashboard extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.assignments.map((a) => <TableRow key={a._id} id={a._id} title={a.name} date={(a.dueDate !== null ) ? a.dueDate : ""} description={a.description} completed={a.completed} />)}
+                  {this.state.assignments.map((a) => <TableRow key={a._id} id={a._id} userID={this.props.userID} title={a.name} date={(a.dueDate !== null) ? a.dueDate : ""} description={a.description} completed={a.completed} />)}
                 </tbody>
               </table> : <p>No upcoming assignments</p> : <p>No upcoming assignments</p>
         }

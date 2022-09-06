@@ -22,8 +22,9 @@ export default class AddAssignment extends Component {
   }
 
   componentDidMount() {
+    const reqData = { userID: this.props.userID }
     axios
-      .get("/api/course/info")
+      .post("/api/course/info", reqData)
       .then(res => {
         this.setState({
           courses: res.data.courses
@@ -39,7 +40,7 @@ export default class AddAssignment extends Component {
           }
         }
       })
-      .catch(err => 
+      .catch(err =>
         this.setState({
           errors: err.response.data
         })
@@ -65,7 +66,8 @@ export default class AddAssignment extends Component {
       courseID: this.state.courseID,
       dueDate: this.state.dueDate,
       type: this.state.type,
-      description: this.state.description
+      description: this.state.description,
+      userID: this.props.userID
     }
     this.setState({
       data: {},
@@ -79,7 +81,7 @@ export default class AddAssignment extends Component {
             data: res.data
           })
         })
-        .catch(err => 
+        .catch(err =>
           this.setState({
             errors: err.response.data
           }))
@@ -87,8 +89,8 @@ export default class AddAssignment extends Component {
   }
 
   render() {
-    const {data} = this.state
-    const {errors} = this.state
+    const { data } = this.state
+    const { errors } = this.state
     let courses
     (this.state.courses !== null) ? courses = this.state.courses.map((course) => <option key={course._id} value={course._id}>{course.name}</option>) : courses = ""
     return (
@@ -96,7 +98,7 @@ export default class AddAssignment extends Component {
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h3>Add Assignment</h3>
         </div>
-        <LoadingIndicator text="Adding assignment..."/>
+        <LoadingIndicator text="Adding assignment..." />
         {
           (data !== undefined) ?
             (data.success !== undefined) ?
@@ -135,7 +137,7 @@ export default class AddAssignment extends Component {
                 <td>
                   <div>
                     <select className={classnames((errors.courseID !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.courseID })} onChange={this.onChange} value={this.state.courseID} error={errors.courseID} id="courseID">
-                      { courses }
+                      {courses}
                     </select>
                     <small className="form-text text-danger">{errors.courseID}</small>
                   </div>

@@ -6,26 +6,30 @@ const AssignmentSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true
   },
   courseID: {
     type: String,
     required: true
   },
   dueDate: {
-      type: Date
+    type: Date
   },
   type: {
-      type: String
+    type: String
   },
   description: {
-      type: String
+    type: String
   },
   completed: {
     type: Boolean
   },
   archived: {
     type: Boolean
+  },
+  userID: {
+    type: String,
+    required: true,
+    unique: true
   }
 })
 
