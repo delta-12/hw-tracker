@@ -1,8 +1,6 @@
 import { Component } from "react"
-// import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
-import { logoutUser } from "../actions/authActions"
 import axios from "axios"
 import Header from "../components/Header"
 import CoursesSidebar from "../components/CoursesSidebar"
@@ -65,11 +63,6 @@ class Main extends Component {
     })
   }
 
-  onLogoutClick = e => {
-    e.preventDefault()
-    this.props.logoutUser()
-  }
-
   render() {
 
     const { windowWidth } = this.state
@@ -129,7 +122,6 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 }
 const mapStateToProps = state => ({
@@ -137,6 +129,5 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 export default connect(
-  mapStateToProps,
-  { logoutUser }
+  mapStateToProps
 )(Main)

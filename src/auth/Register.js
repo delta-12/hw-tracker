@@ -74,8 +74,8 @@ class Register extends Component {
                   {(errors.password2) ? <><small className="form-text text-danger">{errors.password2}</small><br /></> : null}
                 </div>
                 <p>Already have an account? <Link className="link" to="/login">Login</Link></p>
-                <p>Return to <Link className="link" to="/">Home</Link></p>
-                <button className="btn btn-success" type="submit">Register</button>
+                {/* <p>Return to <Link className="link" to="/">Home</Link></p> */}
+                <button className="btn btn-primary" type="submit">Register</button>
               </div>
             </div>
           </div>

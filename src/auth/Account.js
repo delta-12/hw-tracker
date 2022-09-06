@@ -1,4 +1,5 @@
 import { Component } from "react"
+import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import classnames from "classnames"
@@ -6,6 +7,7 @@ import { updateAccountInfo } from "../actions/authActions"
 import { LoadingIndicator } from "../components/LoadingIndicator"
 import ServerResponse from "../components/ServerResponse"
 import WithRouter from "../components/WithRouter"
+import Header from "../components/Header"
 
 class Account extends Component {
 
@@ -48,6 +50,7 @@ class Account extends Component {
 
     return (
       <div>
+        <Header />
         <hr className="my-5" style={{ visibility: "hidden" }}></hr>
         <form noValidate onSubmit={this.onSubmit}>
           <div className="container">
@@ -70,7 +73,8 @@ class Account extends Component {
                   <input className={classnames((errors.password2 !== undefined) ? "form-control is-invalid" : "form-control", { invalid: errors.password2 })} onChange={this.onChange} value={this.state.password2} placeholder="Confirm Password" error={errors.password2} id="password2" type="password" />
                   {(errors.password2) ? <><small className="form-text text-danger">{errors.password2}</small><br /></> : null}
                 </div>
-                <button className="btn btn-success" type="submit">Update</button>
+                <p>Return to <Link className="link" to="/dashboard">Dashboard</Link></p>
+                <button className="btn btn-primary" type="submit">Update</button>
               </div>
             </div>
           </div>

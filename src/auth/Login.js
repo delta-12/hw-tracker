@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { loginUser } from "../actions/authActions"
 import WithRouter from "../components/WithRouter"
+import Header from "../components/Header"
 
 class Login extends Component {
 
@@ -57,6 +58,7 @@ class Login extends Component {
 
     return (
       <div>
+        <Header />
         <hr className="my-5" style={{ visibility: "hidden" }}></hr>
         <form noValidate onSubmit={this.onSubmit}>
           <div className="container">
@@ -101,8 +103,8 @@ class Login extends Component {
                   </small>
                 </div>
                 <p>Don't have an account? <Link className="link" to="/register">Register</Link></p>
-                <p>Return to <Link className="link" to="/">Home</Link></p>
-                <button className="btn btn-success" type="submit">Login</button>
+                {/* <p>Return to <Link className="link" to="/">Home</Link></p> */}
+                <button className="btn btn-primary" type="submit">Login</button>
               </div>
             </div>
           </div>
