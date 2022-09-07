@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { registerUser } from "../actions/authActions"
 import WithRouter from "../components/WithRouter"
+import Header from "../components/Header"
 
 class Register extends Component {
 
@@ -56,6 +57,7 @@ class Register extends Component {
 
     return (
       <div>
+        <Header />
         <hr className="my-5" style={{ visibility: "hidden" }}></hr>
         <form noValidate onSubmit={this.onSubmit}>
           <div className="container">
